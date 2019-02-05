@@ -23,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/paulosales47/CadastroUsuario/issues"
   },
-  "homepage": "https://github.com/paulosales47/CadastroUsuario#readme"
+  "homepage": "https://github.com/paulosales47/CadastroUsuario#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.2.1",
+    "consign": "^0.1.6",
+    "express": "^4.16.4"
+  }
 }
