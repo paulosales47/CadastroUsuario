@@ -13,7 +13,15 @@ module.exports.novo = function(aplicacao, resposta){
 }
 
 module.exports.alterar = function(aplicacao, requisicao, resposta){
-    resposta.render('usuario/alterar');
+    
+    let id_usuario = requisicao.query.id;
+    let conexao = aplicacao.config.DbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
+
+    usuarioDAO.BuscarUsuario(id_usuario, function(usuario){
+        resposta.render('usuario/alterar', {usuario: usuario});
+        //resposta.send(usuario);
+    });
 }
 
 module.exports.detalhe = function(aplicacao, requisicao, resposta){
@@ -42,6 +50,12 @@ module.exports.cadastrarUsuario = function(aplicacao, requisicao, resposta){
 }
 
 module.exports.atualizarUsuario = function(aplicacao, requisicao, resposta){
-    resposta.render('/usuario');
+
+    let formulario = requisicao.body;
+    let conexao = aplicacao.config.DbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
+
+    usuarioDAO.CadastrarUsuario(formulario);
+    resposta.redirect('/usuario');
 }
 

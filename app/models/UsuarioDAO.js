@@ -6,15 +6,13 @@ class UsuarioDAO{
         this._conexao = conexao;
     }
 
-    CadastrarUsuario(usuario)
-    {
+    CadastrarUsuario(usuario){
         MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
         .then(client => client.db().collection('usuarios').insertOne(usuario))
         .catch(err => console.log(err));
     }
 
     BuscarTodosUsuarios(callback){
-        
         MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
         .then(client => {
             client.db()
@@ -22,6 +20,20 @@ class UsuarioDAO{
             .find({})
             .toArray(function(erro, usuarios){
                 callback(usuarios);
+            });
+        })
+        .catch(err => console.log(err));
+    }
+
+    BuscarUsuario(id_usuario, callback){
+        
+        MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
+        .then(client => {
+            client.db()
+            .collection('usuarios')
+            .find({_id: new MongoDB.ObjectID(id_usuario)})
+            .toArray(function(erro, usuario){
+                callback(usuario);
             });
         })
         .catch(err => console.log(err));
