@@ -8,7 +8,12 @@ class UsuarioDAO{
 
     CadastrarUsuario(usuario){
         MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
-        .then(client => client.db().collection('usuarios').insertOne(usuario))
+        .then(client => {
+            client.db()
+            .collection('usuarios')
+            .insertOne(usuario);
+            client.close();
+        })
         .catch(err => console.log(err));
     }
 
@@ -19,6 +24,7 @@ class UsuarioDAO{
             .collection('usuarios')
             .find({})
             .toArray(function(erro, usuarios){
+                client.close();
                 callback(usuarios);
             });
         })
@@ -33,6 +39,7 @@ class UsuarioDAO{
             .collection('usuarios')
             .find({_id: new MongoDB.ObjectID(id_usuario)})
             .toArray(function(erro, usuario){
+                client.close();
                 callback(usuario);
             });
         })
@@ -45,7 +52,8 @@ class UsuarioDAO{
         .then(client => {
             client.db()
             .collection('usuarios')
-            .deleteOne({_id: new MongoDB.ObjectID(id_usuario)})
+            .deleteOne({_id: new MongoDB.ObjectID(id_usuario)});
+            client.close();
         })
         .catch(err => console.log(err));
     }
