@@ -15,6 +15,10 @@ module.exports = function(aplicacao){
         aplicacao.app.controllers.usuario.detalhe(aplicacao, requisicao, resposta);
     });
 
+    aplicacao.get('/excluir', function(requisicao, resposta){
+        aplicacao.app.controllers.usuario.excluir(aplicacao, requisicao, resposta);
+    });
+
     aplicacao.post('/cadastrarUsuario', function(requisicao, resposta){
         aplicacao.app.controllers.usuario.cadastrarUsuario(aplicacao, requisicao, resposta);
     });

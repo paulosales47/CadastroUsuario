@@ -16,8 +16,19 @@ module.exports.alterar = function(aplicacao, requisicao, resposta){
     resposta.render('usuario/alterar');
 }
 
-module.exports.detalhes = function(aplicacao, requisicao, resposta){
+module.exports.detalhe = function(aplicacao, requisicao, resposta){
     resposta.render('usuario/detalhe');
+}
+
+module.exports.excluir = function(aplicacao, requisicao, resposta){
+
+    let id_usuario = requisicao.query.id;
+    let conexao = aplicacao.config.DbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
+
+    usuarioDAO.ExcluirUsuario(id_usuario);
+    
+    resposta.redirect('/usuario');    
 }
 
 module.exports.cadastrarUsuario = function(aplicacao, requisicao, resposta){
