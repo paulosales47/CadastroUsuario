@@ -19,10 +19,10 @@ app.use('/public', express.static('./app/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
 consign()
-    .include('./app/routes')
+    .include('./config/dbConnection.js')
+    .then('./app/routes')
     .then('./app/models')
     .then('./app/controllers')
-    .then('./config/dbConnection.js')
     .into(app);
 
 module.exports = app;

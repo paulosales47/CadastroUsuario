@@ -1,19 +1,16 @@
 let mongoDB = require('mongodb');
+var _db;
 
-let connMongoDB = function(){
-    let db = new mongoDB.Db(
-        'usuarios'
-        ,new mongoDB.Server(
-            'localhost'
-            ,27017
-            ,{}
-        )
-        ,{}
-    );
+module.exports = {
+    Connect: function(callback){
+        return mongoDB.MongoClient.connect('mongodb://localhost:27017/estudo', (erro, db) => {
+            _db = db;
+            return callback(erro);
+        });
+    },
 
-    return db;
-}
+    GetDB: function(){
+        return _db;
+    }
 
-module.exports = function(){
-    return connMongoDB;
-}
+};

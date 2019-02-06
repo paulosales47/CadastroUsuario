@@ -17,8 +17,10 @@ module.exports.detalhes = function(aplicacao, requisicao, resposta){
 module.exports.cadastrarUsuario = function(aplicacao, requisicao, resposta){
 
     let formulario = requisicao.body;
+    let conexao = aplicacao.config.dbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
 
-    
+    usuarioDAO.CadastrarUsuario(formulario);
 
     resposta.render('usuario/index');
 }
