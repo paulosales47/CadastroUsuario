@@ -15,12 +15,12 @@ module.exports = function(aplicacao){
         aplicacao.app.controllers.usuario.detalhe(aplicacao, requisicao, resposta);
     });
 
-    aplicacao.post('/salvarNovo', function(requisicao, resposta){
-        aplicacao.app.controllers.usuario.salvarNovo(aplicacao, requisicao, resposta);
+    aplicacao.post('/cadastrarUsuario', function(requisicao, resposta){
+        aplicacao.app.controllers.usuario.cadastrarUsuario(aplicacao, requisicao, resposta);
     });
 
-    aplicacao.post('/salvarAlteracao', function(requisicao, resposta){
-        aplicacao.app.controllers.usuario.salvarAlteracao(aplicacao, requisicao, resposta);
+    aplicacao.post('/atualizarUsuario', function(requisicao, resposta){
+        aplicacao.app.controllers.usuario.atualizarUsuario(aplicacao, requisicao, resposta);
     });
 
 }
