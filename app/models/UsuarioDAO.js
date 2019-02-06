@@ -1,4 +1,4 @@
-let mongoDB = require('mongodb');
+let MongoClient = require('mongodb').MongoClient
 
 class UsuarioDAO{
 
@@ -6,16 +6,26 @@ class UsuarioDAO{
         this._conexao = conexao;
     }
 
-    CadastrarUsuario(usuario){
-
-        this._conexao.Connect((erro) => {
-
-            let db = this._conexao.GetDB();
-
-            db.collection('usuarios').insert(usuario);
-        });
+    CadastrarUsuario(usuario)
+    {
+        MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
+        .then(client => client.db().collection('usuarios').insertOne(usuario))
+        .catch(err => console.log(err));
     }
 
+    BuscarTodosUsuarios(callback){
+        
+        MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
+        .then(client => {
+            usuarios = client.db()
+            .collection('usuarios')
+            .find({})
+            .toArray(function(erro, usuarios){
+                callback(usuarios);
+            });
+        })
+        .catch(err => console.log(err));
+    }
 }
 
 module.exports = function(){

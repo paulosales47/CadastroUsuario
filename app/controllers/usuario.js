@@ -1,5 +1,11 @@
-module.exports.index = function(resposta){
-    resposta.render('usuario/index');
+module.exports.index = function(aplicacao, resposta){
+    
+    let conexao = aplicacao.config.DbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
+
+    usuarioDAO.BuscarTodosUsuarios(function(usuarios){
+        resposta.render('usuario', {usuarios: usuarios});
+    });
 }
 
 module.exports.novo = function(aplicacao, resposta){
@@ -17,15 +23,14 @@ module.exports.detalhes = function(aplicacao, requisicao, resposta){
 module.exports.cadastrarUsuario = function(aplicacao, requisicao, resposta){
 
     let formulario = requisicao.body;
-    let conexao = aplicacao.config.dbConnection;
+    let conexao = aplicacao.config.DbConnection;
     let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
 
     usuarioDAO.CadastrarUsuario(formulario);
-
-    resposta.render('usuario/index');
+    resposta.redirect('/usuario');
 }
 
 module.exports.atualizarUsuario = function(aplicacao, requisicao, resposta){
-    resposta.render('usuario/index');
+    resposta.render('/usuario');
 }
 

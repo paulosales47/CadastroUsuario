@@ -1,6 +1,6 @@
 module.exports = function(aplicacao){
     aplicacao.get('/usuario', function(requisicao, resposta){
-        aplicacao.app.controllers.usuario.index(resposta);
+        aplicacao.app.controllers.usuario.index(aplicacao, resposta);
     });
 
     aplicacao.get('/novo', function(requisicao, resposta){
