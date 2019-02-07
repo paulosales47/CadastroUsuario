@@ -19,8 +19,7 @@ module.exports.alterar = function(aplicacao, requisicao, resposta){
     let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
 
     usuarioDAO.BuscarUsuario(id_usuario, function(usuario){
-        resposta.render('usuario/alterar', {usuario: usuario});
-        //resposta.send(usuario);
+        resposta.render('usuario/alterar', {usuario: usuario[0] });
     });
 }
 
@@ -54,8 +53,8 @@ module.exports.atualizarUsuario = function(aplicacao, requisicao, resposta){
     let formulario = requisicao.body;
     let conexao = aplicacao.config.DbConnection;
     let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
-
-    usuarioDAO.CadastrarUsuario(formulario);
+    console.log(formulario);
+    usuarioDAO.AtualizarUsuario(formulario);
     resposta.redirect('/usuario');
 }
 

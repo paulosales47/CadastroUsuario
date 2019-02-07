@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="Paulo Henrique Sales Sampaio">
 
-        <title>Cadastro de Usuário</title>
+        <title>Edição de Usuário</title>
 
         <!-- Bootstrap core CSS -->
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -16,19 +16,18 @@
         
         <div class="container">
             <div class="py-5 text-center">
-                <h2>Cadastro de Usuário</h2>
-                <p class="lead">Realize atualizações no cadastro de usuários <%= usuario._id %> </p>
-                <span> <%= usuario._id %> </span>
+                <h2>Edição de Usuário</h2>
+                <p class="lead">Realize atualizações no cadastro de usuários </p>
             </div>
 
-            <form action="/atualizarUsuario" method="POST" novalidate>
+            <form action="/atualizarUsuario" method="POST">
 
-                <input id="id" name="id" hidden="hidden" value="<%= usuario._id %>">
+                <input id="id" name="id" hidden="hidden" value="<%=usuario._id%>"/>
                 
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label for="primeiroNome">Primeiro Nome</label>
-                        <input type="text" class="form-control" id="primeiroNome" name="primeiroNome" value="<%= usuario.primeiroNome %>">
+                        <input type="text" class="form-control" id="primeiroNome" name="primeiroNome" value="<%=usuario.primeiroNome%>"/>
                         <div class="invalid-feedback">
                             O nome é obrigatório
                         </div>

@@ -17,6 +17,30 @@ class UsuarioDAO{
         .catch(err => console.log(err));
     }
 
+    ExcluirUsuario(id_usuario){
+
+        MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
+        .then(client => {
+            client.db()
+            .collection('usuarios')
+            .deleteOne({_id: new MongoDB.ObjectID(id_usuario)});
+            client.close();
+        })
+        .catch(err => console.log(err));
+    }
+
+    AtualizarUsuario(usuario){
+
+        MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
+        .then(client => {
+            client.db()
+            .collection('usuarios')
+            .updateOne({_id: new MongoDB.ObjectID(usuario.id)}, {$set: usuario});
+            client.close();
+        })
+        .catch(err => console.log(err));
+    }
+
     BuscarTodosUsuarios(callback){
         MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
         .then(client => {
@@ -46,17 +70,7 @@ class UsuarioDAO{
         .catch(err => console.log(err));
     }
 
-    ExcluirUsuario(id_usuario){
 
-        MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
-        .then(client => {
-            client.db()
-            .collection('usuarios')
-            .deleteOne({_id: new MongoDB.ObjectID(id_usuario)});
-            client.close();
-        })
-        .catch(err => console.log(err));
-    }
 }
 
 module.exports = function(){
