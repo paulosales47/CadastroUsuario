@@ -24,7 +24,14 @@ module.exports.alterar = function(aplicacao, requisicao, resposta){
 }
 
 module.exports.detalhe = function(aplicacao, requisicao, resposta){
-    resposta.render('usuario/detalhe');
+
+    let id_usuario = requisicao.query.id;
+    let conexao = aplicacao.config.DbConnection;
+    let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
+    
+    usuarioDAO.BuscarUsuario(id_usuario, function(usuario){
+        resposta.render('usuario/detalhe', {usuario: usuario[0] });
+    });
 }
 
 module.exports.excluir = function(aplicacao, requisicao, resposta){
@@ -53,7 +60,6 @@ module.exports.atualizarUsuario = function(aplicacao, requisicao, resposta){
     let formulario = requisicao.body;
     let conexao = aplicacao.config.DbConnection;
     let usuarioDAO = new aplicacao.app.models.UsuarioDAO(conexao);
-    console.log(formulario);
     usuarioDAO.AtualizarUsuario(formulario);
     resposta.redirect('/usuario');
 }
