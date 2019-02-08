@@ -2,13 +2,19 @@ let express = require('express');
 let consign = require('consign');
 let bodyParser = require('body-parser');
 let {check, validationResult} = require('express-validator/check');
-
+let expressSession = require('express-session');
 let app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', './app/views');
 app.set('check', check);
 app.set('validationResult', validationResult);
+app.set(expressSession({
+    secret: ',3[zcuY%ZlZmbO;MN{U5GIUN(]AJ}hQ*CJhe45K^IjhkzWx#N)jT}5i@zi+s*Db)',
+    resave: false,
+    saveUninitialized: false
+}));
+
 
 app.use("/jquery",express.static('./node_modules/jquery'));
 app.use("/popper", express.static('./node_modules/popper.js'));
