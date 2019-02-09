@@ -14,7 +14,7 @@ class LoginDAO{
             .find(usuario)
             .toArray(function(erro, usuarioPesquisa){
                 client.close();
-                callback(usuarioPesquisa.length > 0);
+                callback(usuarioPesquisa);
             })
         })
         .catch( (erro) => console.log(erro) )
