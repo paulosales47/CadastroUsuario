@@ -35,7 +35,7 @@ module.exports = function(aplicacao){
     });
 
     aplicacao.post('/cadastrarUsuario', function(requisicao, resposta){
-        if(requisicao.session.auntenticado)
+        if(requisicao.session.autenticado)
             aplicacao.app.controllers.usuario.cadastrarUsuario(aplicacao, requisicao, resposta);
         else
             resposta.redirect('/login');
