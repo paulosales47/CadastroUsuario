@@ -9,4 +9,8 @@ module.exports = function(aplicacao){
     ], function(requisicao, resposta){
         aplicacao.app.controllers.login.Autenticar(aplicacao, requisicao, resposta);
     });
+
+    aplicacao.get('/sair', function(requisicao, resposta){
+        aplicacao.app.controllers.login.Sair(requisicao, resposta);
+    })
 }

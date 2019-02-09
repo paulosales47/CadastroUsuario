@@ -22,10 +22,11 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="\usuario">Usuários<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="\novo">Cadastro</a>
+                <a class="nav-item nav-link" href="\usuario">Usuários<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="\novo">Cadastro</a>
+                <a class="nav-item nav-link" href="\sair">Sair</a>
                 </div>
             </div>
         </nav>
@@ -56,13 +57,13 @@
                                 <td><%= usuarios[i].primeiroNome %></td>
                                 <td><%= usuarios[i].ultimoNome %></td>
                                 <td><%= usuarios[i].email %></td>
-                                <td><a href="detalhe?id=<%= usuarios[i]._id %>" class="btn btn-outline-info">
+                                <td><a href="/detalhe?id=<%= usuarios[i]._id %>" class="btn btn-outline-info">
                                     <i class="material-icons">info</i>
                                 </a></td>
-                                <td><a href="alterar?id=<%= usuarios[i]._id %>" class="btn btn-outline-primary">
+                                <td><a href="/alterar?id=<%= usuarios[i]._id %>" class="btn btn-outline-primary">
                                     <i class="material-icons">edit</i>
                                 </a></td>
-                                <td><a href="excluir?id=<%= usuarios[i]._id %>" class="btn btn-outline-danger">
+                                <td><a href="/excluir?id=<%= usuarios[i]._id %>" class="btn btn-outline-danger">
                                     <i class="material-icons">delete</i>
                                 </a></td>
                             </tr>

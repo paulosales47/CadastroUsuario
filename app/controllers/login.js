@@ -25,6 +25,12 @@ module.exports.Autenticar = function(aplicacao, requisicao, resposta){
             resposta.redirect('usuario/');
         }
         else
-            resposta.render('login/index', {validacao: false, usuario: usuario, mensagem: 'Senha ou usuário incorretos'});
+            resposta.render('login/index', {validacao: false, usuario: usuario, mensagem: 'Verifique o usuário e senha informados'});
+    });
+}
+
+module.exports.Sair = function(requisicao, resposta){
+    requisicao.session.destroy(function(erro){
+        resposta.redirect('/login');    
     });
 }
