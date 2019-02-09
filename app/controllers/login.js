@@ -21,7 +21,6 @@ module.exports.Autenticar = function(aplicacao, requisicao, resposta){
             requisicao.session.autenticado = true;
             requisicao.session.primeiroNome = usuarioPesquisa[0].primeiroNome;
             requisicao.session.nomeUsuario = usuarioPesquisa[0].nomeUsuario
-            console.log(requisicao.session.autenticado);
             resposta.redirect('usuario/');
         }
         else
