@@ -1,4 +1,5 @@
-let MongoDB = require('mongodb')
+let MongoDB = require('mongodb');
+const {SHA3} = require('sha3');
 
 class UsuarioDAO{
 
@@ -7,6 +8,11 @@ class UsuarioDAO{
     }
 
     CadastrarUsuario(usuario){
+
+        let hash = new SHA3(512);
+        hash.update(usuario.senha.concat(this._conexao.salt));
+        usuario.senha = hash.digest('hex');
+        
         MongoDB.MongoClient.connect(this._conexao.stringConexao, {useNewUrlParser: true})
         .then(client => {
             client.db()
